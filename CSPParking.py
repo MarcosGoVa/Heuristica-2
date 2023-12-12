@@ -41,33 +41,29 @@ def adelantado(*lista):
 def sandwich(*lista):
     for i in range(len(lista)):
         for j in range(len(lista)):
-            #Caso primera fila
-            if (lista[i][0] == 1 and lista[j][0] == lista[i][0] + 1 and lista[i][1] == lista[j][1]):
-                return False
-            #Caso segunda fila
-            if (lista[i][0] == Dominio[-1][0] and lista[j][0] == Dominio[-1][0] - 1 and lista[i][1] == lista[j][1]):
-                return False
-            #caso sandwich
-            if ((lista[i][0]-1,lista[i][1]) in lista and (lista[i][0]+1,lista[i][1]) in lista):
-                return False
+            if i!=j:
+                #Caso primera fila
+                if (lista[i][0] == 1 and lista[j][0] == lista[i][0] + 1 and lista[i][1] == lista[j][1]):
+                    return False
+                #Caso última fila
+                if (lista[i][0] == Dominio[-1][0] and lista[j][0] == Dominio[-1][0] - 1 and lista[i][1] == lista[j][1]):
+                    return False
+                #caso sandwich
+                if ((lista[i][0]-1,lista[i][1]) in lista and (lista[i][0]+1,lista[i][1]) in lista):
+                    return False
     return True
 
-'''def sandwich(*lista):
+"""def sandwich(*lista):
     for i in range(len(lista)):
         #Caso primera fila
-        if(lista[i][0] == 1 and (lista[i][0],lista[i][1]+1) in lista):
+        if(lista[i][0] == 1 and (lista[i][0]+1,lista[i][1]) in lista):
             return False
-        #Caso segunda fila
-        if(lista[i][0] == Dominio[-1][0] and (lista[i][0],lista[i][1]-1) in lista):
+        #Caso última fila
+        if(lista[i][0] == Dominio[-1][0] and (lista[i][0]-1,lista[i][1]) in lista):
             return False
-        """if (lista[i][0] == 1 and lista[j][0] == lista[i][0] + 1 and lista[i][1] == lista[j][1]):
-            return False
-        #Caso segunda fila
-        if (lista[i][0] == Dominio[-1][0] and lista[j][0] == Dominio[-1][0] - 1 and lista[i][1] == lista[j][1]):
-            return False"""
         if ((lista[i][0]-1,lista[i][1]) in lista and (lista[i][0]+1,lista[i][1]) in lista):
                 return False
-    return True'''
+    return True"""
               
 
 problem.addConstraint(constraint.AllDifferentConstraint())
@@ -75,5 +71,7 @@ problem.addConstraint(congelador,ambulance_list)
 problem.addConstraint(adelantado,ambulance_list)
 problem.addConstraint(sandwich,ambulance_list)
 
-solutions = problem.getSolutions()
+solutions = problem.getSolution()
 print("Solution: ", solutions)
+numsolutions = len(solutions)
+print("\nNúmero total de soluciones: ",numsolutions)
