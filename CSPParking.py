@@ -2,15 +2,24 @@ import constraint
 from constraint import *
 import input_reader
 #PE:(1,1)(1,2)(2,1)(4,1)(5,1)(5,2)
-problem = Problem()
+problem = constraint.Problem()
 ambulance_list = []
 #Es la lista de ambulancias que tiene elementos tipo 'TSU-X', 'TSU-C', 'TNU-X', 'TSU-C'
 PE = []
 #Lista con los valores de dominio que tengan electricidad
 
 Dominio, PE, ambulance_list = input_reader.main()
+c_ambulance = []
+not_c_ambulance = []
 
-problem.addVariables(ambulance_list, Dominio)
+for ambulance in ambulance_list:
+    if 'C' in ambulance:
+        c_ambulance.append(ambulance)
+    else:
+        not_c_ambulance.append(ambulance)
+        
+problem.addVariables(c_ambulance, PE)
+problem.addVariables(not_c_ambulance, Dominio)
 
 def notEqual (*posicion) :
     for i in range (len(posicion)) :
@@ -19,14 +28,14 @@ def notEqual (*posicion) :
                 return False
     return True
 
-def congelador(*lista):
+"""def congelador(*lista):
     for i in range (len(lista)) :
         if 'C' in ambulance_list[i]:
             if lista[i] not in PE:
                 return False
                 #Hay que poner false dentro de las iteraciones del bucle ya que si ponemos true, puede no haber visto 
                 #el resto de ambulancias con C y asignarles un valor cualquiera
-    return True
+    return True"""
 
 
 def adelantado(*lista):
@@ -67,11 +76,11 @@ def sandwich(*lista):
               
 
 problem.addConstraint(constraint.AllDifferentConstraint())
-problem.addConstraint(congelador,ambulance_list)
+#problem.addConstraint(congelador,ambulance_list)
 problem.addConstraint(adelantado,ambulance_list)
 problem.addConstraint(sandwich,ambulance_list)
 
-solutions = problem.getSolution()
+solutions = problem.getSolutions()
 print("Solution: ", solutions)
 numsolutions = len(solutions)
 print("\nNúmero total de soluciones: ",numsolutions)
