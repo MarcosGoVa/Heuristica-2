@@ -1,3 +1,5 @@
+import sys
+
 def leer_archivo(nombre_archivo):
     with open(nombre_archivo, 'r') as archivo:
         lineas = archivo.readlines()
@@ -32,16 +34,20 @@ def procesar_vehiculos(vehiculos) -> list:
 
 
 def main():
-    # Cambia el nombre del archivo si es necesario
-    nombre_archivo = 'input_example.txt'
+    if len(sys.argv) != 2:
+        print("Uso: python CSPParking.py <ruta_del_archivo>")
+        sys.exit(1)
 
-    filas_columnas, plazas_electricas, vehiculos = leer_archivo(nombre_archivo)
+    # Obtener la ruta del archivo desde la línea de comandos
+    ruta_archivo = sys.argv[1]
 
-    # Imprimir resultado
-    """print(filas_columnas)
-    print(plazas_electricas)
-    print(procesar_vehiculos(vehiculos))"""
+    filas_columnas, plazas_electricas, vehiculos = leer_archivo(ruta_archivo)
+
     return filas_columnas, plazas_electricas, procesar_vehiculos(vehiculos)
+
+
+
+
 
 
 if __name__ == "__main__":

@@ -1,6 +1,8 @@
 import constraint
 from constraint import *
 import input_reader
+import output_writer
+
 #PE:(1,1)(1,2)(2,1)(4,1)(5,1)(5,2)
 problem = constraint.Problem()
 ambulance_list = []
@@ -84,3 +86,6 @@ solutions = problem.getSolutions()
 print("Solution: ", solutions)
 numsolutions = len(solutions)
 print("\nNúmero total de soluciones: ",numsolutions)
+
+#Guardar soluciones en un archivo csv
+output_writer.guardar_soluciones_en_csv(solutions, "output.csv", ambulance_list)
