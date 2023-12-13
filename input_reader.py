@@ -1,6 +1,11 @@
 import sys
+import os
 
 def leer_archivo(nombre_archivo):
+    cwd = os.getcwd()
+    print(cwd)
+
+    print(nombre_archivo)
     with open(nombre_archivo, 'r') as archivo:
         lineas = archivo.readlines()
     

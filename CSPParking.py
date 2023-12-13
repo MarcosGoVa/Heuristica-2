@@ -88,4 +88,4 @@ numsolutions = len(solutions)
 print("\nNúmero total de soluciones: ",numsolutions)
 
 #Guardar soluciones en un archivo csv
-output_writer.guardar_soluciones_en_csv(solutions, "output.csv", ambulance_list)
+output_writer.guardar_soluciones_en_csv(solutions, "output.csv", ambulance_list, Dominio)

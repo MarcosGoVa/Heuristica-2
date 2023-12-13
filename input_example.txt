@@ -6,5 +6,3 @@ PE:(1,1)(1,2)(2,1)(4,1)
 4-TNU-C
 5-TSU-X
 6-TNU-X
-7-TNU-X
-8-TSU-X
