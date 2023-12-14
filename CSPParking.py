@@ -22,7 +22,6 @@ for ambulance in ambulance_list:
         
 problem.addVariables(c_ambulance, PE)
 problem.addVariables(not_c_ambulance, Dominio)
-
 def notEqual (*posicion) :
     for i in range (len(posicion)) :
         for j in range (i+1,len(posicion) ) :
@@ -41,6 +40,10 @@ def notEqual (*posicion) :
 
 
 def adelantado(*lista):
+    #Miramos si es una sola fila que entonces no se podría abrir la ambulancia
+    if (Dominio[-1][0] == 1):
+        print("última fila: ",Dominio[-1][0])
+        return False
     for i in range(len(lista)):
          if 'TSU' in ambulance_list[i]:
             for j in range(len(lista)):
@@ -83,7 +86,7 @@ problem.addConstraint(adelantado,ambulance_list)
 problem.addConstraint(sandwich,ambulance_list)
 
 solutions = problem.getSolutions()
-print("Solution: ", solutions)
+#print("Solution: ", solutions)
 numsolutions = len(solutions)
 print("\nNúmero total de soluciones: ",numsolutions)
 
